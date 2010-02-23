@@ -21,6 +21,9 @@
 
 #include "nfomain.h"
 
+#define GRABBER_MAX 16
+#define PRIORITY    15
+
 NfoMain::NfoMain()
 {
     setupUi(this);
@@ -43,9 +46,10 @@ void NfoMain::fillProgressBar()
 void
 eventgl_cb (valhalla_event_gl_t e, void *data)
 {
-  (void) data;
-  printf ("Global event: %u\n", e);
   //TO BE COMPLETED/CHANGED
+  (void) data;
+  if (e == VALHALLA_EVENTGL_SCANNER_EXIT)
+       printf ("Scanner finished: %u\n", e);
 }
 
 void
@@ -82,17 +86,16 @@ void NfoMain::on_launchScan_clicked()
     valhalla_t *handle;
     valhalla_init_param_t param;
     valhalla_verb_t verbosity = VALHALLA_MSG_VERBOSE;
-    int metadata_cb = 0, time_limit = 10000;
 
     valhalla_verbosity (verbosity);
 
     memset (&param, 0, sizeof (param));
     param.parser_nb   = 2;
-    param.grabber_nb  = 8;
+    param.grabber_nb  = 16;
     param.commit_int  = 128;
     param.decrapifier = 1;
     param.gl_cb       = eventgl_cb;
-    param.md_cb       = metadata_cb ? eventmd_cb : NULL;
+    param.md_cb       = eventmd_cb;
 
     handle = valhalla_init (database, &param);
     if (!handle)
@@ -113,19 +116,14 @@ void NfoMain::on_launchScan_clicked()
 
     valhalla_config_set(handle, SCANNER_PATH, this->folder.toAscii().data(), 1);
 
-    rc = valhalla_run (handle, 1, 0, 15);
+    rc = valhalla_run (handle, 1, 0, PRIORITY);
     if (rc)
     {
         valhalla_uninit (handle);
         return;
     }
 
-    if (!time_limit)
-        valhalla_wait (handle);
-    else
-        usleep (time_limit * 1000);
-
-   valhalla_uninit (handle);
+   //valhalla_uninit (handle);
 
     this->fileInfo->setPlainText(folder);
 }
