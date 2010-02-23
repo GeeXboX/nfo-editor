@@ -28,8 +28,9 @@ Use mechanism of exception to control values
 
 Source code
 ~~~~~~~~~~~~~~~
-Adding the project under Licence like libnfo and libvalhalla
-Creating Authors and Copying files 
+Adding the project under Licence like libnfo and libvalhalla => DONE
+Creating Authors and Copying files => DONE to be clarified for Licence 
 Correct README and TODO
-Adding a ChangeLog and maybe a configure
+Adding a ChangeLog => DONE
+and maybe a configure
 Do not forget docs
