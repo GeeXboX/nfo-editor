@@ -30,4 +30,3 @@ HEADERS += nfomain.h
 FORMS += nfomainwindow.ui
 OTHER_FILES += icons/icon_enna_128.png
 LIBS += -lnfo -lvalhalla
-INCLUDEPATH += -I"/usr/include"

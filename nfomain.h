@@ -34,12 +34,8 @@
 #include <QHttp>
 #include <QUrl>
 #include <ui_nfomainwindow.h>
-#ifdef __cplusplus
-extern "C" {
 #include "nfo.h"
 #include "valhalla.h"
-}
-#endif
 
 class NfoMain : public QMainWindow, private Ui::NfoMainWindow
 {
