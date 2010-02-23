@@ -124,7 +124,7 @@ void NfoMain::on_actionClose_activated()
    this->nfoInfo->clear();
 }
 
-void NfoMain::on_listOfFiles_currentItemChanged(QListWidgetItem * current, QListWidgetItem * previous)
+void NfoMain::on_listOfFiles_currentItemChanged(QListWidgetItem * current)
 {
     if (current)
     {
@@ -137,7 +137,7 @@ void NfoMain::on_listOfFiles_currentItemChanged(QListWidgetItem * current, QList
     }
 }
 
-void NfoMain::on_thumbList_currentItemChanged(QListWidgetItem * current, QListWidgetItem * previous)
+void NfoMain::on_thumbList_currentItemChanged(QListWidgetItem * current)
 {
     if (current)
     {
@@ -155,7 +155,7 @@ void NfoMain::on_thumbList_currentItemChanged(QListWidgetItem * current, QListWi
     }
 }
 
-void NfoMain::on_fanArtList_currentItemChanged(QListWidgetItem * current, QListWidgetItem * previous)
+void NfoMain::on_fanArtList_currentItemChanged(QListWidgetItem * current)
 {
     if (current)
     {
@@ -230,7 +230,10 @@ void NfoMain::grabNfoFiles(QString folderSelected){
 
 void NfoMain::fillFileInformationPanel(QString fileName)
 {
-    this->fileInfo->setPlainText("No file information before scan by libvalhalla");
+    QString defaultFileInformation("No file information available before scan by libvalhalla");
+    if(!fileName.isNull())
+        defaultFileInformation.append(" for ").append(fileName);
+    this->fileInfo->setPlainText(defaultFileInformation);
 }
 
 void NfoMain::fillMediaInformationPanel(QString fileName)

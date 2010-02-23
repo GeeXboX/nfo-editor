@@ -30,9 +30,9 @@ class NfoMain : public QMainWindow, private Ui::NfoMainWindow
     private slots:
         void on_actionOpen_activated();
         void on_actionClose_activated();
-        void on_listOfFiles_currentItemChanged(QListWidgetItem * current, QListWidgetItem * previous);
-        void on_fanArtList_currentItemChanged(QListWidgetItem * current, QListWidgetItem * previous);
-        void on_thumbList_currentItemChanged(QListWidgetItem * current, QListWidgetItem * previous);
+        void on_listOfFiles_currentItemChanged(QListWidgetItem * current);
+        void on_fanArtList_currentItemChanged(QListWidgetItem * current);
+        void on_thumbList_currentItemChanged(QListWidgetItem * current);
         void on_launchScan_clicked();
 
 
