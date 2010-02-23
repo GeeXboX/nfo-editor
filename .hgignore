@@ -4,4 +4,4 @@ syntax: regexp
 ^Makefile
 ^moc_nfomain.cpp
 ^valhalla.db
-^ui_*.h
+^ui_nfomainwindow.h
